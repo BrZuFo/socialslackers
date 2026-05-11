@@ -17,10 +17,11 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 // initializes variables
 int lastCLK;
 int position = 0;
-int numOpt = 2;
+int numOpt = 3;
+int readNum = 0;
 
 // initializes lists for options and responses
-String options[] = {"Yes", "No"};
+String options[] = {"Yes", "No", "Maybe"};
 
 // basic setup idk
 void setup() {
@@ -46,12 +47,16 @@ void loop() {
 
   // checks if cursor's current position has changed
   if (currentCLK != lastCLK) {
-
-    if (digitalRead(DT) != currentCLK) {
-      position++;
-    } else {
-      position--;
+    if (readNum % 2 == 0){
+      if (digitalRead(DT) != currentCLK) {
+        position++;
+      } 
+      else {
+        position--; 
+      }
     }
+    
+    readNum++;
   }
 
   // makes sure cursor is within bounds
