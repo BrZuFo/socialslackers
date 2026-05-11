@@ -22,8 +22,8 @@
 **Week 7**
     -Finish backend (Chase, Zaden, and Elias[Lead]).
     -Convert to C++ with ChatGPT (Chase, Zaden, and Elias[Lead]).
-    -Building a shell for the hardware. (Open assignment) 
-
+    -Building a shell for the hardware. (Zaden, Elias[Lead]). 
+    -Testing circuit/display functionality (Quin)
 
 Lead responsibilities will include a mid-week check via text, general support for all assignments, and assistance in building the backend.  
 
