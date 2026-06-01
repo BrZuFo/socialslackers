@@ -25,8 +25,9 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
 // ---------- MARQUEE ----------
 #define MARQUEE_Y        38   // pixel row the scrolling text sits on
-#define MARQUEE_SPEED_MS  30  // ms per pixel shift (lower = faster)
+#define MARQUEE_SPEED_MS  5  // ms per pixel shift (lower = faster)
 #define MARQUEE_GAP       10  // blank pixels between loop-around
+#define MARQUEE_PIXEL 2
 
 // ============================================================
 // ENUM INDICES
@@ -73,28 +74,28 @@ struct ResponseEntry {
 
 const char r000[] PROGMEM = "Report's done, sir...*wink*"; 
 const char r001[] PROGMEM = "Need anything else?";
-const char r010[] PROGMEM = "I'll fix it by 5 ,but I’ll need to skip my son’s birthday."; 
-const char r020[] PROGMEM = "Do it again? Sure thing, you’re the boss!"; 
-const char r030[] PROGMEM = "Do it yourself, otherwise I’ll leak the photos of you with the janitor."; 
-const char r040[] PROGMEM = "You emailed me? That’s crazy, everyone said you got fired.";
+const char r010[] PROGMEM = "I'll fix it by 5 ,but I'll need to skip my son's birthday."; 
+const char r020[] PROGMEM = "Do it again? Sure thing, you're the boss!"; 
+const char r030[] PROGMEM = "Do it yourself, otherwise I'll leak the photos of you with the janitor."; 
+const char r040[] PROGMEM = "You emailed me? That's crazy, everyone said you got fired.";
 const char r100[] PROGMEM = "Got a sec to review?";
 const char r110[] PROGMEM = "Stay in your cubical."; 
 const char r120[] PROGMEM = "Oh, you noticed too? Have you thought about a career in the FBI?"; 
 const char r130[] PROGMEM = "Methinketh it doth not concern me, naive.";
 const char r140[] PROGMEM = "I definitely submitted, but why do";
-const char r200[] PROGMEM = "Lunch later? I heard it’s meat paste today.";
+const char r200[] PROGMEM = "Lunch later? I heard it's meat paste today.";
 const char r210[] PROGMEM = "We need to talk about last night..."; 
 const char r220[] PROGMEM = "Great meeting, huh? I really liked it when the Vice piggybacked on the CEO and said the same exact thing."; 
 const char r230[] PROGMEM = "You're late. You know what alarms are?"; 
 const char r240[] PROGMEM = "How's the... stuff?...*Wink*"; 
 const char r300[] PROGMEM = "Can I help you?";
-const char r310[] PROGMEM = "The earth is a cube. I’ve seen the corners."; 
-const char r320[] PROGMEM = "Visiting? Watch out for the boss’s dungeon."; const char r330[] PROGMEM = "Employees only. Unless you got $20."; 
+const char r310[] PROGMEM = "The earth is a cube. I've seen the corners."; 
+const char r320[] PROGMEM = "Visiting? Watch out for the boss's dungeon."; const char r330[] PROGMEM = "Employees only. Unless you got $20."; 
 const char r340[] PROGMEM = "Have you thought about reading a map?"; 
 const char r400[] PROGMEM = "Assignment submitted! I definitely wrote it.";
 const char r410[] PROGMEM = "But I did study...";
 const char r420[] PROGMEM = "Fascinating lecture, ever thought about lecturing on Cannabis Horticulture? ";
-const char r430[] PROGMEM = "You think you’re not a failure just because you teach?";
+const char r430[] PROGMEM = "You think you're not a failure just because you teach?";
 const char r440[] PROGMEM = "Oh this is calculus? I thought this was sculptures 101.";
 const char r500[] PROGMEM = "Can I copy your notes?";
 const char r510[] PROGMEM = "You told everyone?!";
@@ -104,51 +105,51 @@ const char r540[] PROGMEM = "We still hang out?";
 const char r600[] PROGMEM = "Study together?";
 const char r610[] PROGMEM = "You skipped your part.";
 const char r620[] PROGMEM = "Oh you read now. Nice.";
-const char r630[] PROGMEM = "This groupchat is useless. I’ve seen lobotomized guinea pigs with more brain power than this.";
+const char r630[] PROGMEM = "This groupchat is useless. I've seen lobotomized guinea pigs with more brain power than this.";
 const char r640[] PROGMEM = "So... who presents?";
 const char r700[] PROGMEM = "Is this seat taken?";
-const char r710[] PROGMEM = "That's my usual seat. If I don’t sit there, a rift in time may happen. You wouldn’t want to cause that, would you?";
+const char r710[] PROGMEM = "That's my usual seat. If I don't sit there, a rift in time may happen. You wouldn't want to cause that, would you?";
 const char r720[] PROGMEM = "Love your highlighter, what model are you using?";
 const char r730[] PROGMEM = "Can you move a little? Your stink is overwhelming.";
-const char r740[] PROGMEM = "Heh... same major? I guess that means we’re rivals.";
+const char r740[] PROGMEM = "Heh... same major? I guess that means we're rivals.";
 const char r800[] PROGMEM = "Fancy seeing you here!";
 const char r810[] PROGMEM = "About that email...maybe explicit images are not the best thing to share from your work email.";
 const char r820[] PROGMEM = "You shop here? Wow.";
 const char r830[] PROGMEM = "Not my chair, not my problem.";
-const char r840[] PROGMEM = "What? You legally can’t ask me what I spend my paycheck on.";
-const char r900[] PROGMEM = "OMG, ~love this cafe. I like this area a lot. Someone said it was bad because it’s gentrified now. Whatever that means.";
+const char r840[] PROGMEM = "What? You legally can't ask me what I spend my paycheck on.";
+const char r900[] PROGMEM = "OMG, ~love this cafe. I like this area a lot. Someone said it was bad because it's gentrified now. Whatever that means.";
 const char r910[] PROGMEM = "No, UFOs are real and the FLU is a Bio-weapon. FYI, I am not crazy.";
 const char r920[] PROGMEM = "Oh, so you DO leave the house.";
 const char r930[] PROGMEM = "You owe me money still.";
 const char r940[] PROGMEM = "SO you of your own freewill asked for that haircut?";
-const char ra00[] PROGMEM = "Weird running into you! It’s almost like you're my stalker...haha. You're not right?";
-const char ra10[] PROGMEM = "You use LinkedIn? Huh, maybe that’s why nobody invites you out.";
+const char ra00[] PROGMEM = "Weird running into you! It's almost like you're my stalker...haha. You're not right?";
+const char ra10[] PROGMEM = "You use LinkedIn? Huh, maybe that's why nobody invites you out.";
 const char ra20[] PROGMEM = "Following me?";
-const char ra30[] PROGMEM = "I’ll just report you to HR";
+const char ra30[] PROGMEM = "I'll just report you to HR";
 const char ra40[] PROGMEM = "So we just... wave? Just with our hands though...";
-const char rb00[] PROGMEM = "Nice weather today? It’s gotta be government weather satellites.";
+const char rb00[] PROGMEM = "Nice weather today? It's gotta be government weather satellites.";
 const char rb10[] PROGMEM = "Verily, that was mine own place of rest.";
 const char rb20[] PROGMEM = "oh, eye contact now?";
 const char rb30[] PROGMEM = "Hey, you wanna fight!";
-const char rb40[] PROGMEM = "What if JFK’s head just kinda did that by itself?";
+const char rb40[] PROGMEM = "What if JFK's head just kinda did that by itself?";
 const char rc00[] PROGMEM = "Nice wang, sire";
 const char rc10[] PROGMEM = "Report can wait, right? I'm just a little busy here.";
 const char rc20[] PROGMEM = "Is this the new spot for performance reviews?";
 const char rc30[] PROGMEM = "No meetings. Ever.";
 const char rc40[] PROGMEM = "... *cough*...";
 const char rd00[] PROGMEM = "Are there any mints?";
-const char rd10[] PROGMEM = "You could’ve backed me up...";
+const char rd10[] PROGMEM = "You could've backed me up...";
 const char rd20[] PROGMEM = "Hiding too, huh?";
-const char rd30[] PROGMEM = "It’s a bathroom break not the SATs.";
+const char rd30[] PROGMEM = "It's a bathroom break not the SATs.";
 const char rd40[] PROGMEM = "I'll wait outside. The government is putting spy cameras in the stalls now.";
 const char re00[] PROGMEM = "Those sports, yeah.";
 const char re10[] PROGMEM = "I heard what you said. Maybe keep that in your head from now on.";
-const char re20[] PROGMEM = "Great chat spot. Especially when I’m not here.";
+const char re20[] PROGMEM = "Great chat spot. Especially when I'm not here.";
 const char re30[] PROGMEM = "Don't talk to me here. Unless you want to kiss.";
-const char re40[] PROGMEM = "Sometimes it’s best to not say anything in certain places.";
+const char re40[] PROGMEM = "Sometimes it's best to not say anything in certain places.";
 const char rf00[] PROGMEM = " I used to be an adventurer like you. Then I took an arrow in the knee...";
 const char rf10[] PROGMEM = "There's a line, y'know.";
-const char rf20[] PROGMEM = "Love what they've done. I’ve gotta get the name of their interior designer.";
+const char rf20[] PROGMEM = "Love what they've done. I've gotta get the name of their interior designer.";
 const char rf30[] PROGMEM = "Knock it off.";
 const char rf40[] PROGMEM = "Uh... nice shoes.";
 
@@ -281,7 +282,7 @@ Option    currentOptions[3];
 // marqueeW is the total pixel width of the string (6px per char at textSize 1).
 // If marqueeW <= SCREEN_WIDTH the text is static (centred).
 
-char          textBuf[48];          // RAM copy of current response text
+char          textBuf[160];          // RAM copy of current response text
 int16_t       marqueeX      = 0;    // current scroll offset (pixels)
 int16_t       marqueeW      = 0;    // total text pixel width
 unsigned long marqueeLastMs = 0;    // last tick timestamp
@@ -297,6 +298,7 @@ void loadMarquee(uint8_t optIdx) {
 
   // At textSize 1, each character is 6 pixels wide
   marqueeW      = strlen(textBuf) * 6;
+  marqueeW     += 6;
   marqueeX      = 0;
   marqueeLastMs = millis();
   lastShownOpt  = optIdx;
@@ -309,10 +311,11 @@ bool tickMarquee() {
   unsigned long now = millis();
   if (now - marqueeLastMs >= MARQUEE_SPEED_MS) {
     marqueeLastMs = now;
-    marqueeX--;
+    marqueeX -= MARQUEE_PIXEL;
     // Wrap: once the text has fully scrolled off, restart after a gap
-    if (marqueeX < -(marqueeW + MARQUEE_GAP))
+    if (marqueeX < -(marqueeW + MARQUEE_GAP)){
       marqueeX = 0;
+    }
     return true;
   }
   return false;
