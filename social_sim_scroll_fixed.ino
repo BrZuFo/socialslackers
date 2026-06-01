@@ -611,35 +611,44 @@ void loop() {
     }
 
     // --------------------------------------------------------
-    case STATE_SHOW_CHOICE: {
-      // Show the confirmed pick, then go straight to play-again.
-      display.clearDisplay();
-      display.setTextSize(1);
-      drawTitleBar(F("You say:"));
+    // --------------------------------------------------------
+case STATE_SHOW_CHOICE: {
+  display.clearDisplay();
+  display.setTextSize(1);
+  drawTitleBar(F("You say:"));
 
-      pgmLabel(vibes, currentOptions[chosenOption].vibeIdx, lbl, sizeof(lbl));
-      display.setCursor(0, 18);
-      display.print('['); display.print(lbl); display.print(']');
+  pgmLabel(vibes, currentOptions[chosenOption].vibeIdx, lbl, sizeof(lbl));
+  display.setCursor(0, 18);
+  display.print('['); display.print(lbl); display.print(']');
 
-      display.drawFastHLine(0, 30, SCREEN_WIDTH, SSD1306_WHITE);
+  display.drawFastHLine(0, 30, SCREEN_WIDTH, SSD1306_WHITE);
 
-      // Static centred text (confirmed — no scrolling needed here)
-      int16_t cx = (SCREEN_WIDTH - marqueeW) / 2;
-      if (cx < 0) cx = 0;
-      display.setCursor(cx, MARQUEE_Y);
-      display.print(textBuf);   // textBuf still holds chosen option's text
+  // --- Live marquee (same logic as STATE_CHOOSE_OPTION) ---
+  tickMarquee();   // advance scroll position
 
-      display.drawFastHLine(0, 52, SCREEN_WIDTH, SSD1306_WHITE);
-      display.setCursor(20, 55);
-      display.print(F("Press to continue"));
-      display.display();
+  if (marqueeW <= SCREEN_WIDTH) {
+    int16_t cx = (SCREEN_WIDTH - marqueeW) / 2;
+    display.setCursor(cx, MARQUEE_Y);
+    display.print(textBuf);
+  } else {
+    display.setCursor(marqueeX, MARQUEE_Y);
+    display.print(textBuf);
+    display.setCursor(marqueeX + marqueeW + MARQUEE_GAP, MARQUEE_Y);
+    display.print(textBuf);
+  }
+  // --------------------------------------------------------
 
-      if (buttonClicked()) {
-        encPosition = 0;
-        gameState   = STATE_PLAY_AGAIN;
-      }
-      break;
-    }
+  display.drawFastHLine(0, 52, SCREEN_WIDTH, SSD1306_WHITE);
+  display.setCursor(20, 55);
+  display.print(F("Press to continue"));
+  display.display();
+
+  if (buttonClicked()) {
+    encPosition = 0;
+    gameState   = STATE_PLAY_AGAIN;
+  }
+  break;
+}
 
     // --------------------------------------------------------
     case STATE_PLAY_AGAIN: {
